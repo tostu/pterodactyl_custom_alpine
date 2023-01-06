@@ -20,6 +20,6 @@ jobs:
         
     - name: Build the Docker image
       run: |
-        docker build . --tag ghcr.io/tostu/hello-world:latest
+        docker build . --tag ghcr.io/tostu/pterodactyl_custom_alpine:latest
         docker run ghcr.io/jonashackt/pterodactyl_custom_alpine:latest
         docker push ghcr.io/tostu/pterodactyl_custom_alpine:latest
