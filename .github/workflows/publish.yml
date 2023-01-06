@@ -1,0 +1,25 @@
+name: publish
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: tostu
+        password: ${{ secrets.CR_PAT }}
+        
+    - name: Build the Docker image
+      run: |
+        docker build . --tag ghcr.io/tostu/hello-world:latest
+        docker run ghcr.io/jonashackt/pterodactyl_custom_alpine:latest
+        docker push ghcr.io/tostu/pterodactyl_custom_alpine:latest
